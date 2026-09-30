@@ -622,3 +622,16 @@ button:active {
         font-size: 15px;
     }
 }
+
+/* Fix for overlapping text */
+.message-card {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: normal;
+}
+
+/* Make sure page doesn't run off screen */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
