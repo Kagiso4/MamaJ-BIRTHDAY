@@ -1,0 +1,593 @@
+```css
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    min-height: 100vh;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #a855d9 0%,
+            #6a1b9a 35%,
+            #2e0845 75%,
+            #170323 100%
+        );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow-x: hidden;
+
+    padding: 20px;
+}
+
+
+/* =========================================
+   WELCOME SCREEN
+========================================= */
+
+.welcome {
+    width: 100%;
+
+    max-width: 800px;
+
+    text-align: center;
+
+    padding: 40px;
+
+    animation: welcomeAppear 1.5s ease;
+}
+
+
+.welcome h1 {
+    font-size: clamp(42px, 7vw, 70px);
+
+    margin-bottom: 20px;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 25px rgba(220, 160, 255, 0.8),
+        0 0 50px rgba(220, 160, 255, 0.5);
+}
+
+
+.welcome p {
+    font-size: clamp(17px, 3vw, 22px);
+
+    margin-bottom: 40px;
+
+    color: #f5e6ff;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+button {
+    border: none;
+
+    background: white;
+
+    color: #64138f;
+
+    padding: 15px 30px;
+
+    border-radius: 40px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+button:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 15px white,
+        0 0 30px #d9a3ff,
+        0 0 50px rgba(217, 163, 255, 0.5);
+}
+
+
+button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   BOOK CONTAINER
+========================================= */
+
+.book-container {
+    display: none;
+
+    width: 100%;
+
+    max-width: 1000px;
+
+    text-align: center;
+
+    padding: 20px;
+
+    animation: bookAppear 1s ease;
+}
+
+
+/* =========================================
+   BOOK
+========================================= */
+
+.book {
+    position: relative;
+    top: -20px;
+    width: 100%;
+    max-width: 900px;
+    height: 680px;
+    margin: 0 auto;
+    background: #f9f1fc;
+    border-radius: 12px;
+    perspective: 2000px;
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.5),
+        0 0 40px rgba(218,170,255,.25);
+    overflow: visible;
+}
+
+
+/* =========================================
+   BOOK SPINE
+========================================= */
+
+.book::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        #d5a9e8,
+        #8e4ca8,
+        #d5a9e8
+    );
+    z-index: 20;
+    box-shadow: 0 0 5px rgba(80,20,100,.4);
+}
+
+
+/* =========================================
+   BOOK BACKGROUND
+========================================= */
+
+.book::after {
+    content: "";
+    position: absolute;
+
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+
+    border-radius: 14px;
+    border: 8px solid #eee0f5;
+
+    pointer-events: none;
+    z-index: 50;
+}
+
+
+/* =========================================
+   PAGES
+========================================= */
+
+.page {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 50%;
+    height: 100%;
+
+    padding: 25px;
+
+    background: linear-gradient(135deg, #fff, #fbf5fd);
+    color: #351044;
+
+    border-radius: 0 10px 10px 0;
+
+    box-shadow:
+        5px 5px 20px rgba(0,0,0,.15);
+
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transform: rotateY(90deg);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        transform 1s cubic-bezier(.65,0,.35,1),
+        opacity .5s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   ACTIVE PAGE
+========================================= */
+
+.page.active {
+    opacity: 1;
+
+    transform: rotateY(0deg);
+
+    pointer-events: auto;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   BIRTHDAY PHOTOS
+========================================= */
+
+/* =========================
+   BIRTHDAY PHOTOS
+   ========================= */
+
+.birthday-photo {
+    width: 88%;
+    height: 330px;
+
+    object-fit: cover;
+    object-position: center center;
+
+    display: block;
+    margin: 0 auto;
+
+    border-radius: 8px;
+    border: 4px solid white;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.25);
+
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   INDIVIDUAL PHOTO POSITION
+   ========================= */
+
+/* Photo 1 - show more of the head */
+.photo1 {
+    object-position: center 20%;
+}
+
+/* Photo 2 - move the image down */
+.birthday-photo.photo2 {
+    position: relative;
+    top: 38px;
+}
+
+/* Photo 3 */
+.photo3 {
+    object-position: center center;
+}
+
+/* Photo 4 */
+.photo4 {
+    object-position: center center;
+}
+
+/* Photo 5 */
+.photo5 {
+    object-position: center center;
+}
+
+/* Photo 6 */
+.photo6 {
+    object-position: center center;
+}
+
+
+/* =========================================
+   INDIVIDUAL PHOTO CONTROL
+========================================= */
+
+
+/* =========================================
+   PAGE CONTENT
+========================================= */
+
+.page-content {
+    width: 90%;
+    text-align: center;
+    padding: 25px 10px 10px;
+    flex-shrink: 0;
+}
+
+
+.page-content h2 {
+    font-size: clamp(22px, 3vw, 30px);
+
+    margin-bottom: 10px;
+
+    color: #6a1b9a;
+
+    line-height: 1.2;
+}
+
+
+.page-content p {
+    font-size: clamp(14px, 2vw, 17px);
+
+    line-height: 1.5;
+
+    color: #4a235a;
+}
+
+
+/* =========================================
+   BOOK CONTROLS
+========================================= */
+
+.book-controls {
+    position: relative;
+    z-index: 100;
+
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.book-controls button {
+    position: relative;
+    z-index: 101;
+    pointer-events: auto;
+}
+
+
+.book-controls span {
+    min-width: 60px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: rgb(184, 73, 160);
+
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 10px;
+    }
+
+
+    .welcome {
+        padding: 20px;
+    }
+
+
+    .welcome h1 {
+        font-size: 42px;
+    }
+
+
+    .welcome p {
+        font-size: 17px;
+    }
+
+
+    .book-container {
+        padding: 5px;
+    }
+
+
+    .book {
+        height: 600px;
+
+        max-width: 100%;
+    }
+
+
+    .page {
+        width: 100%;
+
+        left: 0;
+
+        border-radius: 10px;
+
+        padding: 20px;
+
+        transform-origin: center center;
+    }
+
+
+    .book::before {
+        display: none;
+    }
+
+
+    .birthday-photo {
+    width: 90%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
+    flex-shrink: 0;
+}
+
+
+    .page-content {
+        width: 90%;
+    }
+
+
+    .page-content h2 {
+        font-size: 25px;
+    }
+
+
+    .page-content p {
+        font-size: 16px;
+    }
+
+
+    .book-controls {
+        gap: 15px;
+
+        margin-top: 20px;
+    }
+
+
+    .book-controls button {
+        padding: 12px 18px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 700px) {
+
+    .book {
+        height: 680px;
+    }
+
+
+    .birthday-photo {
+        height: 290px;
+    }
+
+
+    .page-content {
+        padding-top: 10px;
+    }
+
+
+    .page-content h2 {
+        font-size: 21px;
+    }
+
+
+    .page-content p {
+        font-size: 14px;
+    }
+
+
+    .book-controls button {
+        padding: 10px 14px;
+    }
+
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes welcomeAppear {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes bookAppear {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+/* Fix Page 2 message */
+.page:nth-child(2) .page-content {
+    padding-top: 12px;
+}
+
+.page:nth-child(2) .page-content h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.page:nth-child(2) .page-content p {
+    font-size: 15px;
+    line-height: 1.4;
+}
