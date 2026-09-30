@@ -591,3 +591,34 @@ button:active {
     font-size: 15px;
     line-height: 1.4;
 }
+
+/* 📱 MOBILE FIX — makes everything look good on phones */
+@media (max-width: 600px) {
+    .main-header h1 {
+        font-size: 28px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .photo-card {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+
+    .photo-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .message-card {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+
+    .message-card p {
+        font-size: 15px;
+    }
+}
